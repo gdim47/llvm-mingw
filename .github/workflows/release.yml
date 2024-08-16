@@ -67,7 +67,7 @@ jobs:
           fi
           cd repo
           git config --global user.name "GitHub Actions"
-          git config --global user.email blaws05@gmail.com
+          git config --global user.email gdim47@protonmail.com
           git tag -a ${{inputs.tag}} -m "${{inputs.title}}"
           # If the commit isn't the tip of a branch, and there are
           # differences in workflow files compared with the tip of the
