@@ -19,7 +19,7 @@ jobs:
   # slightly more, when we know a separate build of the same version but with
   # assertions enabled, has passed some amount of tests.
   prepare:
-    if: (github.event_name != 'schedule') || (github.repository == 'bylaws/llvm-mingw')
+    if: (github.event_name != 'schedule') || (github.repository == 'gdim47/llvm-mingw')
     runs-on: ubuntu-latest
     outputs:
       LLVM_VERSION: ${{steps.get-versions.outputs.LLVM_VERSION}}
@@ -56,7 +56,7 @@ jobs:
 
   # Build a cross compiler for Linux, targeting Windows.
   linux:
-    if: (github.event_name != 'schedule') || (github.repository == 'bylaws/llvm-mingw')
+    if: (github.event_name != 'schedule') || (github.repository == 'gdim47/llvm-mingw')
     needs: [prepare]
     runs-on: ubuntu-20.04
     steps:
@@ -88,7 +88,7 @@ jobs:
   # Crosscompile the toolchain for running on Linux on a different architecture, bundle the runtime
   # libraries that were built in the 'linux' step above.
   linux-cross-aarch64:
-    if: (github.event_name != 'schedule') || (github.repository == 'bylaws/llvm-mingw')
+    if: (github.event_name != 'schedule') || (github.repository == 'gdim47/llvm-mingw')
     needs: [linux, prepare]
     runs-on: ubuntu-20.04
     steps:
@@ -139,7 +139,7 @@ jobs:
   # architectures). The binaries built here match actual releases quite closely.
 
   upload-nightly:
-    if: (github.event_name == 'schedule') && (github.repository == 'bylaws/llvm-mingw')
+    if: (github.event_name == 'schedule') && (github.repository == 'gdim47/llvm-mingw')
     permissions:
       contents: write
     needs: [linux, linux-cross-aarch64]
