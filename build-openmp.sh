@@ -91,6 +91,7 @@ for arch in $ARCHS; do
         -DLIBOMP_ENABLE_SHARED=TRUE \
         -DCMAKE_C_FLAGS_INIT="$CFGUARD_CFLAGS" \
         -DCMAKE_CXX_FLAGS_INIT="$CFGUARD_CFLAGS" \
+        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM" \
         $CMAKEFLAGS \
         ..
     cmake --build . ${CORES:+-j${CORES}}
